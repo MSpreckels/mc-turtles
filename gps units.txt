@@ -1,0 +1,4 @@
+shell.run("gps", "host", 345, 49, -524)
+shell.run("gps", "host", 348, 52, -521)
+shell.run("gps", "host", 351, 49, -524)
+shell.run("gps", "host", 348, 52, -527)

@@ -1,0 +1,7 @@
+{
+    "http": "post",
+    "endpoint": "createTurtle",
+    "body": {
+        "job": "%s"
+    }
+}
