@@ -1,11 +1,18 @@
 --pastebin get XD2cLT0G hub.lua
 
+local sharedBasePath = "/met/shared"
+local hubBasePath = "/met/pc"
+local jsonPath = sharedBasePath .. "/json"
+local namesPath = hubBasePath .. "/names"
+local utilsPath = hubBasePath .. "/utils"
+local restPath = hubBasePath .. "/rest"
+
 print("hub starting up..")
 print("loading apis..")
-os.loadAPI("/common/json")
-os.loadAPI("/common/names")
-os.loadAPI("/common/rest")
-os.loadAPI("/common/utils")
+os.loadAPI(jsonPath)
+os.loadAPI(namesPath)
+os.loadAPI(restPath)
+os.loadAPI(utilsPath)
 
 print("opening modem..")
 rednet.open("right");

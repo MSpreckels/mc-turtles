@@ -3,7 +3,6 @@
 local sharedBasePath = "/met/shared"
 local hubBasePath = "/met/pc"
 local gitPath = sharedBasePath .. "/git"
-local startupPath = sharedBasePath .. "/startup"
 local jsonPath = sharedBasePath .. "/json"
 local transformPath = sharedBasePath .. "/transform"
 local profilePath = sharedBasePath .. "/profile"
