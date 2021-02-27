@@ -1,85 +1,80 @@
 --pastebin run fysWqF7B
 
-print("checking if git api exists...")
-if fs.exists("/met/common/git") then
-    print("folder met/common has been found, do you want to update it? y/n")
-    if read() == "y" then
-        shell.run("rm", "/met/common/git")
-    end
-else
-  shell.run("pastebin", "get", "iSCvBQQg", "/met/common/git")
+local sharedBasePath = "/met/shared"
+local hubBasePath = "/met/pc"
+local gitPath = sharedBasePath .. "/git"
+local startupPath = sharedBasePath .. "/startup"
+local jsonPath = sharedBasePath .. "/json"
+local transformPath = sharedBasePath .. "/transform"
+local profilePath = sharedBasePath .. "/profile"
+
+local customturtleStartupPath = "/startup/customturtle"
+local hubStartupPath = "/startup/hub"
+
+local namesPath = hubBasePath .. "/names"
+local utilsPath = hubBasePath .. "/utils"
+local restPath = hubBasePath .. "/rest"
+
+if fs.exists(gitPath) then
+    print("Updating " .. gitPath .. "...")
+    shell.run("rm", gitPath)
 end
+shell.run("pastebin", "get", "iSCvBQQg", gitPath)
 
-os.loadAPI("/met/common/git")
+os.loadAPI(gitPath)
 
-print("loading common apis..")
+print("loading shared apis..")
 
-if fs.exists("/met/common") then
-    print("folder met/common has been found, do you want to update it? y/n")
-    if read() == "y" then
-        shell.run("rm", "/met/common")
-    end
+if fs.exists(jsonPath) then
+    print("Updating " .. jsonPath .. "...")
+    shell.run("rm", jsonPath)
 end
-
-if fs.exists("/startup") then
-    print("folder startup has been found, do you want to update it? y/n")
-    if read() == "y" then
-        shell.run("rm", "/startup")
-    end
-end
-
-if not fs.exists("/met/common/json") then
-    -- shell.run("pastebin", "get", "5HHC17Xg", "/met/common/json")
-    git.get("json", "/met/common/json")
-end
+git.get("json", jsonPath)
 
 if turtle then
-    if fs.exists("/met/profile") then
-        print("profile folder detected, do you want to clean it? y/n")
-        if read() == "y" then
-            shell.run("rm", "/met/profile")
-        end
+    if fs.exists(transformPath) then
+        print("Updating " .. transformPath .. "...")
+        shell.run("rm", transformPath)
     end
+    git.get("transform", transformPath)
 
-    if fs.exists("/startup/customturtle") then
-        shell.run("rm", "/startup/customturtle")
+    if fs.exists(profilePath) then
+        print("Updating " .. profilePath .. "...")
+        shell.run("rm", profilePath)
     end
+    git.get("profile", profilePath)
 
-    if not fs.exists("/met/common/transform") then
-        -- shell.run("pastebin", "get", "jLaR0VT0", "/met/common/transform")
-        git.get("transform", "/met/common/transform")
-
+    if fs.exists(customturtleStartupPath) then
+        print("Updating " .. customturtleStartupPath .. "...")
+        shell.run("rm", customturtleStartupPath)
     end
+    git.get("customturtle", customturtleStartupPath)
+    shell.run(customturtleStartupPath)
+else 
 
-    if not fs.exists("/met/common/profile") then
-        -- shell.run("pastebin", "get", "zjkdYmXV", "/met/common/profile")
-        git.get("profile", "/met/common/profile")
+    if fs.exists(namesPath) then
+        print("Updating " .. namesPath .. "...")
+        shell.run("rm", namesPath)
     end
+    git.get("names", namesPath)
 
-    -- shell.run("pastebin", "get", "c18S5NEU", "/startup/customturtle")
-    git.get("customturtle", "/startup/customturtle")
-    shell.run("/startup/customturtle")
-else    
-    if not fs.exists("/met/common/names") then
-        -- shell.run("pastebin", "get", "qUfJSu3d", "/met/common/names")
-        git.get("names", "/met/common/names")
+    if fs.exists(utilsPath) then
+        print("Updating " .. utilsPath .. "...")
+        shell.run("rm", utilsPath)
     end
+    git.get("utils", utilsPath) 
 
-    if not fs.exists("/met/common/utils") then
-        -- shell.run("pastebin", "get", "eYE7aKcL", "/met/common/utils")
-        git.get("utils", "/met/common/utils")
-    end    
-
-    if not fs.exists("/met/common/rest") then
-        -- shell.run("pastebin", "get", "ADSScD8t", "/met/common/rest")
-        git.get("rest", "/met/common/rest")
+    if fs.exists(restPath) then
+        print("Updating " .. restPath .. "...")
+        shell.run("rm", restPath)
     end
+    git.get("rest", restPath) 
 
-    if fs.exists("/startup/hub") then
-        shell.run("rm", "/startup/hub")
+    if fs.exists(hubStartupPath) then
+        print("Updating " .. hubStartupPath .. "...")
+        shell.run("rm", hubStartupPath)
     end
-    
-    -- shell.run("pastebin", "get", "XD2cLT0G", "/startup/hub")
-    git.get("hub", "/startup/hub")
-    shell.run("/startup/hub")
+    git.get("hub", hubStartupPath) 
+    shell.run(hubStartupPath)
+
 end
