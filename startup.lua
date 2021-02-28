@@ -49,7 +49,7 @@ if turtle then
     end
     git.get("customturtle", customturtleStartupPath)
     shell.run(customturtleStartupPath)
-else 
+else
 
     if fs.exists(namesPath) then
         print("Updating " .. namesPath .. "...")
@@ -61,19 +61,19 @@ else
         print("Updating " .. utilsPath .. "...")
         shell.run("rm", utilsPath)
     end
-    git.get("utils", utilsPath) 
+    git.get("utils", utilsPath)
 
     if fs.exists(restPath) then
         print("Updating " .. restPath .. "...")
         shell.run("rm", restPath)
     end
-    git.get("rest", restPath) 
+    git.get("rest", restPath)
 
     if fs.exists(hubStartupPath) then
         print("Updating " .. hubStartupPath .. "...")
         shell.run("rm", hubStartupPath)
     end
-    git.get("hub", hubStartupPath) 
+    git.get("hub", hubStartupPath)
     shell.run(hubStartupPath)
 
 end

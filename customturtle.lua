@@ -1,10 +1,16 @@
 --pastebin get c18S5NEU turtle.lua
+
+local sharedBasePath = "/met/shared"
+local jsonPath = sharedBasePath .. "/json"
+local transformPath = sharedBasePath .. "/transform"
+local profilePath = sharedBasePath .. "/profile"
+
 shell.run("label", "set", "loading...")
 print("turtle starting up..")
 print("loading apis..")
-os.loadAPI("/common/json")
-os.loadAPI("/common/profile")
-os.loadAPI("/common/transform")
+os.loadAPI(jsonPath)
+os.loadAPI(profilePath)
+os.loadAPI(transformPath)
 
 print("opening modem..")
 rednet.open("left")
