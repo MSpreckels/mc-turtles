@@ -4,10 +4,17 @@ if turtle.getFuelLevel() < 1 then
 end
 
 turtle.up()
-turtle.select(2)
+turtle.select(14)
 turtle.place()
-turtle.select(3)
+turtle.select(15)
 turtle.drop()
 turtle.down()
 turtle.select(1)
 turtle.place()
+
+turtle.up()
+turtle.select(15)
+turtle.suck()
+turtle.select(14)
+turtle.dig()
+turtle.down()
