@@ -11,8 +11,10 @@ function construct(amount)
   turtle.drop()
   turtle.down()
 
-  for i = 1, amount, 1 do
+  for i = 1, amount do
+    print(i)
     turtle.select(1)
+    turtle.dig()
     turtle.place()
   end
  
