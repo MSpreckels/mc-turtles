@@ -12,7 +12,7 @@ function construct(amount)
   turtle.down()
 
   for i = 1, amount do
-    turtle.select(1)
+    turtle.select(i)
     turtle.place()
     turtle.dig()
   end
