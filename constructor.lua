@@ -14,8 +14,8 @@ function construct(amount)
   for i = 1, amount do
     print(i)
     turtle.select(1)
-    turtle.dig()
     turtle.place()
+    turtle.dig()
   end
  
   turtle.up()
