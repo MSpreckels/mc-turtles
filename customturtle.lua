@@ -32,11 +32,11 @@ rednet.send(hubID, '{"http":"post","endpoint":"updateTurtle","body":"' .. profil
 
 --handle walking
 if data.job == "miner" then
-    print("select a type")
-    print("[r]oom [t]unnel [q]uarry [s]trip")
-    type = read()
+    -- print("select a type")
+    -- print("[r]oom [t]unnel [q]uarry [s]trip")
+    -- type = read()
 
-    print("launching program...")
+    -- print("launching program...")
 end
 
 while true do
