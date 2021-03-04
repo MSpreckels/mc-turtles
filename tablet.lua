@@ -13,7 +13,7 @@ end
 rednet.send(hubID, '{"http":"get","endpoint":"tablet"}')
 id, res = rednet.receive(10)
 if res ~= nil then
-    msg = json.decode(res);
+    msg = json.decode(res)
 
-    print(msg)    
+    print(msg.msg)
 end
