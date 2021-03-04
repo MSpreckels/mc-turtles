@@ -1,11 +1,7 @@
 local sharedBasePath = "/met/shared"
 local jsonPath = sharedBasePath .. "/json"
-local transformPath = sharedBasePath .. "/transform"
-local profilePath = sharedBasePath .. "/profile"
 
 os.loadAPI(jsonPath)
-os.loadAPI(profilePath)
-os.loadAPI(transformPath)
 
 rednet.open("back")
 
