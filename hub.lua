@@ -54,7 +54,9 @@ function updateTurtle(id, reqbody)
 end
 
 function getTablet(id)
-    rednet.send(id, '{"msg":"' .. turtles[0].name .. '!"}')
+    turtle = turtles[0]
+    obj = json.decode(turtle)
+    rednet.send(id, '{"msg":"' .. obj.name .. '!"}')
 end
 
 rest.register("get", "name", getName)
