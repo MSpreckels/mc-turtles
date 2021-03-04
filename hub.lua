@@ -53,8 +53,13 @@ function updateTurtle(id, reqbody)
     end
 end
 
+function getTablet(id)
+    rednet.send(id, '{"msg":"Hello Tablet!"}')
+end
+
 rest.register("get", "name", getName)
 rest.register("post", "updateTurtle", updateTurtle)
+rest.register("get", "tablet", getTablet)
 rest.listen()
 
 rednet.unhost("hub", "main");
