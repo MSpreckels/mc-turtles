@@ -48,6 +48,10 @@ while true do
 
   event, side, xPos, yPos = os.pullEvent("monitor_touch")
 
-
+  for i = 1, #buttons, 1 do
+    if xPos >= buttons[i].x and xPos <= buttons[i].x + buttons[i].w then
+      buttons[i].onClick()
+    end
+  end
 end
 
