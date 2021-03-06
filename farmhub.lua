@@ -4,10 +4,10 @@ local sizeX, sizeY = monitor.getSize()
 local toggle = false
 
 
-function drawbutton(buttonData, color)
+function drawbutton(buttonData)
   for i = 0, buttonData.h-1, 1 do
     monitor.setCursorPos(buttonData.x, buttonData.y + i)
-    monitor.setBackgroundColor(color)
+    monitor.setBackgroundColor(buttonData.color)
     monitor.write(string.rep(" ", buttonData.w))
   end
 
