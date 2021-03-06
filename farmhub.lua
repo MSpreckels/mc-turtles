@@ -1,8 +1,7 @@
 local monitor = peripheral.find("monitor")
 local speaker = peripheral.find("speaker")
+monitor.setTextScale(0.5)
 local sizeX, sizeY = monitor.getSize()
-local toggle = false
-
 
 function drawbutton(buttonData)
   for i = 0, buttonData.h-1, 1 do
@@ -45,19 +44,19 @@ button.text = "Farm On"
 button.x = 2
 button.y = 2
 button.w = sizeX-2
-button.h = 1
+button.h = sizeY/2-2
 button.onClick = handleFarmOnClicked
-buttons.color = colors.green
+button.color = colors.green
 
 button2 = {}
 button2.id = 2
 button2.text = "Farm Off"
 button2.x = 2
-button2.y = 4
+button2.y = sizeY/2 +1
 button2.w = sizeX-2
-button2.h = 1
+button2.h = sizeY/2-2
 button2.onClick = handleFarmOffClicked
-buttons.color = colors.red
+button2.color = colors.red
 
 buttons[button.id] = button
 buttons[button2.id] = button2
