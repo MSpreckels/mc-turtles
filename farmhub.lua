@@ -29,7 +29,7 @@ button.h = 1;
 button.onClick = nil;
 
 button2 = {}
-button2.id = 0;
+button2.id = 1;
 button2.text = "Test2";
 button2.x = 2;
 button2.y = 4;
