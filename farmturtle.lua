@@ -40,6 +40,7 @@ while true do
   id, res = rednet.receive(10)
   if res ~= nil then
     obj = json.decode(res)
+    print(res)
     
     if obj.isFarmActive == "true" then
       placeGrasBlock()
