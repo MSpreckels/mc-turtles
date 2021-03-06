@@ -37,7 +37,7 @@ while true do
     obj = json.decode(res)
     
     print(obj.isFarmActive)
-    if obj.isFarmActive then
+    if obj.isFarmActive == true then
       placeGrasBlock()
     else
       placeRedstoneLamp()
