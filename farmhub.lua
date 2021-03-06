@@ -1,6 +1,7 @@
 local monitor = peripheral.wrap("front")
 local sizeX, sizeY = monitor.getSize()
 local toggle = false
+monitor.setBackgroundColor(colors.black)
 monitor.clear()
 
 function drawbutton(buttonData, color)
