@@ -16,7 +16,7 @@ button.onClick = nil;
 
 buttons[button.id] = button
 
-drawbutton(buttons[0])
+drawbutton(buttons[0], colors.green)
 
 while true do
 
@@ -27,15 +27,15 @@ end
 
 function drawbutton(buttonData, color)
   
-  for i = 1, h, 1 do
-    monitor.setCursorPos(x,i)
+  for i = 1, buttonData.h, 1 do
+    monitor.setCursorPos(buttonData.x, i)
     monitor.setBackgroundColor(color)
-    monitor.write(string.rep(" ", w))
+    monitor.write(string.rep(" ", buttonData.w))
   end
 
-  monitor.setCursorPos(x+w/2,y+h/2)
+  monitor.setCursorPos(buttonData.x + buttonData.w / 2, buttonData.y + buttonData.h / 2)
   monitor.setTextColor(colors.white)
-  monitor.write(text)
+  monitor.write(buttonData.text)
 
   return button;
 end
