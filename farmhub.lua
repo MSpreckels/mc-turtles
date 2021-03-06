@@ -18,6 +18,14 @@ function drawbutton(buttonData, color)
   return button;
 end
 
+function handleOnClickTest()
+  redstone.setAnalogOutput("back", 1)
+end
+
+function handleOnClickTest2()
+  redstone.setAnalogOutput("back", 0)
+end
+
 buttons = {}
 
 button = {}
@@ -27,7 +35,7 @@ button.x = 2;
 button.y = 2;
 button.w = sizeX-2;
 button.h = 1;
-button.onClick = nil;
+button.onClick = handleOnClickTest;
 
 button2 = {}
 button2.id = 1;
@@ -36,7 +44,7 @@ button2.x = 2;
 button2.y = 4;
 button2.w = sizeX-2;
 button2.h = 1;
-button2.onClick = nil;
+button2.onClick = handleOnClickTest2;
 
 buttons[button.id] = button
 buttons[button2.id] = button2
