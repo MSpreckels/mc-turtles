@@ -29,22 +29,22 @@ end
 buttons = {}
 
 button = {}
-button.id = 0;
-button.text = "Test";
-button.x = 2;
-button.y = 2;
-button.w = sizeX-2;
-button.h = 1;
-button.onClick = handleOnClickTest;
+button.id = 0
+button.text = "Test"
+button.x = 2
+button.y = 2
+button.w = sizeX-2
+button.h = 1
+button.onClick = handleOnClickTest
 
 button2 = {}
-button2.id = 1;
-button2.text = "Test2";
-button2.x = 2;
-button2.y = 4;
-button2.w = sizeX-2;
-button2.h = 1;
-button2.onClick = handleOnClickTest2;
+button2.id = 1
+button2.text = "Test2"
+button2.x = 2
+button2.y = 4
+button2.w = sizeX-2
+button2.h = 1
+button2.onClick = handleOnClickTest2
 
 buttons[button.id] = button
 buttons[button2.id] = button2
@@ -56,6 +56,7 @@ while true do
 
   event, side, xPos, yPos = os.pullEvent("monitor_touch")
 
+  print(#buttons)
   for i = 1, #buttons, 1 do
     if xPos >= buttons[i].x and xPos <= buttons[i].x + buttons[i].w and
       yPos >= buttons[i].y and yPos <= buttons[i].y + buttons[i].h then
