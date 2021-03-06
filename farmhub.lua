@@ -1,5 +1,6 @@
 local monitor = peripheral.find("monitor")
 local speaker = peripheral.find("speaker")
+local modem = peripheral.find("modem")
 monitor.setTextScale(0.5)
 local sizeX, sizeY = monitor.getSize()
 
@@ -52,9 +53,9 @@ button2 = {}
 button2.id = 2
 button2.text = "Farm Off"
 button2.x = 2
-button2.y = sizeY/2 +1
+button2.y = sizeY/2 +2
 button2.w = sizeX-2
-button2.h = sizeY/2-1
+button2.h = sizeY/2-2
 button2.onClick = handleFarmOffClicked
 button2.color = colors.red
 
@@ -71,7 +72,7 @@ while true do
     if xPos >= buttons[i].x and xPos <= buttons[i].x + buttons[i].w - 1 and
       yPos >= buttons[i].y and yPos <= buttons[i].y + buttons[i].h - 1 then
       buttons[i].onClick()
-      speaker.playNote("bell", 1, 0);
+      speaker.playNote("bell", 1, 6);
     end
   end
 
