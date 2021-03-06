@@ -49,15 +49,16 @@ button2.onClick = handleOnClickTest2
 buttons[button.id] = button
 buttons[button2.id] = button2
 
-drawbutton(buttons[0], colors.green)
-drawbutton(buttons[1], colors.red)
+drawbutton(buttons[1], colors.green)
+drawbutton(buttons[2], colors.red)
 
 while true do
 
   event, side, xPos, yPos = os.pullEvent("monitor_touch")
 
-  print(#buttons)
   for i = 1, #buttons, 1 do
+    print(buttons[i].text)
+
     if xPos >= buttons[i].x and xPos <= buttons[i].x + buttons[i].w and
       yPos >= buttons[i].y and yPos <= buttons[i].y + buttons[i].h then
       buttons[i].onClick()
