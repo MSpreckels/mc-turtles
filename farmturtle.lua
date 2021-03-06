@@ -14,7 +14,6 @@ rednet.send(hubID, '{"http":"post","endpoint":"addTurtle"}')
 
 
 function placeGrasBlock()
-
   success, data = turtle.inspectUp()
   if success and data.name == "minecraft:redstone_lamp" then
     turtle.select(2)
