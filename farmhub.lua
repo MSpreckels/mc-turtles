@@ -10,7 +10,7 @@ local restPath = hubBasePath .. "/rest"
 
 os.loadAPI(jsonPath)
 os.loadAPI(restPath)
-rednet.open("up");
+rednet.open("top");
 rednet.host("mobfarm", "main");
 
 function drawbutton(buttonData)
