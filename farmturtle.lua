@@ -21,8 +21,8 @@ function placeGrasBlock()
     turtle.digUp()
     turtle.select(1)
     turtle.placeUp()
-    redstone.setAnalogOutput("top", 0)
   end  
+  redstone.setAnalogOutput("top", 0)
 end
 
 function placeRedstoneLamp()
@@ -32,15 +32,14 @@ function placeRedstoneLamp()
     turtle.digUp()
     turtle.select(2)
     turtle.placeUp()
-    redstone.setAnalogOutput("top", 15)
   end  
+  redstone.setAnalogOutput("top", 15)
 end
 
 while true do  
   id, res = rednet.receive(10)
   if res ~= nil then
     obj = json.decode(res)
-    print(res)
     
     if obj.isFarmActive == "true" then
       placeGrasBlock()
