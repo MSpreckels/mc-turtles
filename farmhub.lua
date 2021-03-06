@@ -13,9 +13,9 @@ while true do
 
     redstone.setAnalogOutput("back", 1)
     
-    monitor.setCursorPos(sizeX / 2-2, sizeY / 2 - 1)
+    monitor.setCursorPos(sizeX / 2, sizeY / 2)
     monitor.write("farm");    
-    monitor.setCursorPos(sizeX / 2-1, sizeY / 2)
+    monitor.setCursorPos(sizeX / 2, math.floor(sizeY / 2 + 1))
     monitor.write("off");
   else
     monitor.setBackgroundColor(colors.green)
@@ -23,9 +23,9 @@ while true do
 
     redstone.setAnalogOutput("back", 0)
 
-    monitor.setCursorPos(sizeX / 2-2, sizeY / 2 - 1)
+    monitor.setCursorPos(sizeX / 2, sizeY / 2)
     monitor.write("farm");    
-    monitor.setCursorPos(sizeX / 2-1, sizeY / 2)
+    monitor.setCursorPos(sizeX / 2, math.floor(sizeY / 2 + 1))
     monitor.write("on");
   end
 end
