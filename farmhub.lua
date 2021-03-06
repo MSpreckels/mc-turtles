@@ -1,8 +1,17 @@
 local monitor = peripheral.find("monitor")
 local speaker = peripheral.find("speaker")
-local modem = peripheral.find("modem")
 monitor.setTextScale(0.5)
 local sizeX, sizeY = monitor.getSize()
+
+local sharedBasePath = "/met/shared"
+local hubBasePath = "/met/pc"
+local jsonPath = sharedBasePath .. "/json"
+local restPath = hubBasePath .. "/rest"
+
+os.loadAPI(jsonPath)
+os.loadAPI(restPath)
+rednet.open("up");
+rednet.host("mobfarm", "main");
 
 function drawbutton(buttonData)
   for i = 0, buttonData.h-1, 1 do
@@ -14,21 +23,16 @@ function drawbutton(buttonData)
   monitor.setCursorPos(buttonData.x + buttonData.w / 2 - string.len(buttonData.text) / 2, buttonData.y + buttonData.h / 2)
   monitor.setTextColor(colors.white)
   monitor.write(buttonData.text)
-
-  return button;
 end
 
 function handleFarmOnClicked()
   redstone.setAnalogOutput("back", 0)
   speaker.playNote("bell", 1, 6);
-
-
 end
 
 function handleFarmOffClicked()
   redstone.setAnalogOutput("back", 1)
   speaker.playNote("bell", 1, 0);
-
 end
 
 function redraw()
@@ -38,7 +42,32 @@ function redraw()
   for i = 1, #buttons, 1 do
     drawbutton(buttons[i])
   end
+end
 
+function draw()
+  while true do
+
+    event, side, xPos, yPos = os.pullEvent("monitor_touch")
+
+    for i = 1, #buttons, 1 do
+      if xPos >= buttons[i].x and xPos <= buttons[i].x + buttons[i].w - 1 and
+        yPos >= buttons[i].y and yPos <= buttons[i].y + buttons[i].h - 1 then
+        buttons[i].onClick()
+      end
+    end
+
+    redraw()
+  end
+end
+
+function updateTurtles()
+
+  rednet.send(id, '{"isFarmActive":"' .. isFarmActive .. '"}')
+end
+
+function addTurtle(id)
+  table.insert(turtleIDs, id)
+  rednet.send(id, '{"isFarmActive":"' .. isFarmActive .. '"}')
 end
 
 buttons = {}
@@ -68,18 +97,12 @@ buttons[button2.id] = button2
 
 redraw()
 
+isFarmActive=false
+
+turtleIDs = {}
+
+rest.register("post", "addTurtle", addTurtle)
+
 while true do
-
-  event, side, xPos, yPos = os.pullEvent("monitor_touch")
-
-  for i = 1, #buttons, 1 do
-    if xPos >= buttons[i].x and xPos <= buttons[i].x + buttons[i].w - 1 and
-      yPos >= buttons[i].y and yPos <= buttons[i].y + buttons[i].h - 1 then
-      buttons[i].onClick()
-    end
-  end
-
-  redraw()
+  parallel.waitForAny(draw, rest.listen)
 end
-
-

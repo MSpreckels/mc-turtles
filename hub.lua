@@ -18,7 +18,7 @@ print("opening modem..")
 rednet.open("right");
 
 print("connecting monitor...")
-turtles = {}
+turtleIDs = {}
 monitor = peripheral.wrap("left")
 monitor.setTextScale(0.5)
 monitor.clear()
@@ -27,20 +27,20 @@ print("register hub at lookup table..")
 rednet.host("hub", "main");
 
 print("all ready! waiting for messages..")
-function getName(id)
+function addTurtle(id)
     name = names.get()
     print("Chose name " .. name .. " for turtle " .. id)
     rednet.send(id, '{"name":"' .. name .. '"}')
 end
 
 function updateTurtle(id, reqbody)
-    turtles[id] = reqbody
+    turtleIDs[id] = reqbody
 
     print("Updated Turtle with id " .. id)
 
     index = 1;
 
-    for key, value in utils.pairsByKeys(turtles) do
+    for key, value in utils.pairsByKeys(turtleIDs) do
         monitor.setCursorPos(1,index)
         monitor.clearLine()
         data = json.decode(value)
@@ -54,12 +54,12 @@ function updateTurtle(id, reqbody)
 end
 
 function getTablet(id)
-    turtle = turtles[3]
+    turtle = turtleIDs[3]
     obj = json.decode(turtle)
     rednet.send(id, '{"msg":"' .. obj.name .. '!"}')
 end
 
-rest.register("get", "name", getName)
+rest.register("get", "name", addTurtle)
 rest.register("post", "updateTurtle", updateTurtle)
 rest.register("get", "tablet", getTablet)
 rest.listen()
