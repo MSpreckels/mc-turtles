@@ -16,8 +16,6 @@ while true do
   id, res = rednet.receive(10)
   if res ~= nil then
     obj = json.decode(res)
-    print(obj)
-    
     print(obj.isFarmActive)
   end
 end
