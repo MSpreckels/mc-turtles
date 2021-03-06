@@ -61,13 +61,13 @@ function draw()
 end
 
 function updateTurtles()
-  rednet.send(id, '{"isFarmActive":"' .. isFarmActive .. '"}')
+  rednet.send(id, '{"isFarmActive":"' .. tostring(isFarmActive) .. '"}')
 end
 
 function addTurtle(id)
   print("turtle wants to register " .. id)
   table.insert(turtleIDs, id)
-  rednet.send(id, '{"isFarmActive":"' .. isFarmActive .. '"}')
+  rednet.send(id, '{"isFarmActive":"' .. tostring(isFarmActive) .. '"}')
 end
 
 buttons = {}
