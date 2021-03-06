@@ -26,7 +26,7 @@ function drawbutton(buttonData)
 end
 
 function handleFarmOnClicked()
-  redstone.setAnalogOutput("back", 0)
+  redstone.setAnalogOutput("back", 1)
   speaker.playNote("bell", 1, 6)
 
   if isFarmActive ~= true then
@@ -36,7 +36,7 @@ function handleFarmOnClicked()
 end
 
 function handleFarmOffClicked()
-  redstone.setAnalogOutput("back", 1)
+  redstone.setAnalogOutput("back", 0)
   speaker.playNote("bell", 1, 0)
 
   if isFarmActive ~= false then
@@ -73,6 +73,7 @@ end
 function updateTurtles()
 
   for _, id in pairs(turtleIDs) do
+    print(id)
     rednet.send(id, '{"isFarmActive":"' .. tostring(isFarmActive) .. '"}')
   end
 
