@@ -73,7 +73,6 @@ end
 function updateTurtles()
 
   for _, id in pairs(turtleIDs) do
-    print(id)
     rednet.send(id, '{"isFarmActive":"' .. tostring(isFarmActive) .. '"}')
   end
 
