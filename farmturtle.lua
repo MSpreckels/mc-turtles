@@ -38,12 +38,14 @@ end
 while true do  
   id, res = rednet.receive(10)
   if res ~= nil then
-    -- obj = json.decode(res)
-    
-    -- if obj.isFarmActive == "true" then
-    --   placeGrasBlock()
-    -- else
-    --   placeRedstoneLamp()
-    -- end
+    if type(msg) ~= "table" then
+      obj = json.decode(res)
+      
+      if obj.isFarmActive == "true" then
+        placeGrasBlock()
+      else
+        placeRedstoneLamp()
+      end
+    end
   end
 end
