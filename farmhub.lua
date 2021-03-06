@@ -1,4 +1,5 @@
-local monitor = peripheral.wrap("front")
+local monitor = peripheral.find("monitor")
+local speaker = peripheral.find("speaker")
 local sizeX, sizeY = monitor.getSize()
 local toggle = false
 monitor.setBackgroundColor(colors.black)
@@ -20,6 +21,7 @@ end
 
 function handleOnClickTest()
   redstone.setAnalogOutput("back", 1)
+
 end
 
 function handleOnClickTest2()
@@ -29,7 +31,7 @@ end
 buttons = {}
 
 button = {}
-button.id = 0
+button.id = 1
 button.text = "Test"
 button.x = 2
 button.y = 2
@@ -38,7 +40,7 @@ button.h = 1
 button.onClick = handleOnClickTest
 
 button2 = {}
-button2.id = 1
+button2.id = 2
 button2.text = "Test2"
 button2.x = 2
 button2.y = 4
@@ -57,11 +59,10 @@ while true do
   event, side, xPos, yPos = os.pullEvent("monitor_touch")
 
   for i = 1, #buttons, 1 do
-    print(buttons[i].text)
-
-    if xPos >= buttons[i].x and xPos <= buttons[i].x + buttons[i].w and
-      yPos >= buttons[i].y and yPos <= buttons[i].y + buttons[i].h then
+    if xPos >= buttons[i].x and xPos <= buttons[i].x + buttons[i].w - 1 and
+      yPos >= buttons[i].y and yPos <= buttons[i].y + buttons[i].h - 1 then
       buttons[i].onClick()
+      speaker.playNote("bell", 1, 0);
     end
   end
 end
