@@ -28,15 +28,21 @@ end
 function handleFarmOnClicked()
   redstone.setAnalogOutput("back", 0)
   speaker.playNote("bell", 1, 6)
-  isFarmActive = true
-  updateTurtles()
+
+  if isFarmActive ~= true then
+    isFarmActive = true
+    updateTurtles()
+  end
 end
 
 function handleFarmOffClicked()
   redstone.setAnalogOutput("back", 1)
   speaker.playNote("bell", 1, 0)
-  isFarmActive = false
-  updateTurtles()
+
+  if isFarmActive ~= false then
+    isFarmActive = false
+    updateTurtles()
+  end
 end
 
 function redraw()
