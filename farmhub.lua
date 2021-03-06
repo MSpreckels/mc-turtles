@@ -18,13 +18,13 @@ function drawbutton(buttonData, color)
   return button;
 end
 
-function handleOnClickTest()
-  redstone.setAnalogOutput("back", 1)
+function handleFarmOnClicked()
+  redstone.setAnalogOutput("back", 0)
 
 end
 
-function handleOnClickTest2()
-  redstone.setAnalogOutput("back", 0)
+function handleFarmOffClicked()
+  redstone.setAnalogOutput("back", 1)
 end
 
 function redraw()
@@ -41,22 +41,22 @@ buttons = {}
 
 button = {}
 button.id = 1
-button.text = "Test"
+button.text = "Farm On"
 button.x = 2
 button.y = 2
 button.w = sizeX-2
 button.h = 1
-button.onClick = handleOnClickTest
+button.onClick = handleFarmOnClicked
 buttons.color = colors.green
 
 button2 = {}
 button2.id = 2
-button2.text = "Test2"
+button2.text = "Farm Off"
 button2.x = 2
 button2.y = 4
 button2.w = sizeX-2
 button2.h = 1
-button2.onClick = handleOnClickTest2
+button2.onClick = handleFarmOffClicked
 buttons.color = colors.red
 
 buttons[button.id] = button
