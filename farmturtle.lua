@@ -34,11 +34,13 @@ function placeRedstoneLamp()
   end  
   redstone.setAnalogOutput("top", 15)
 end
-
+for key, value in pairs(t) do
+  
+end
 while true do  
   id, res = rednet.receive(10)
   if res ~= nil then
-    if type(msg) ~= "table" then
+    if type(res) ~= "table" then
       obj = json.decode(res)
       
       if obj.isFarmActive == "true" then
