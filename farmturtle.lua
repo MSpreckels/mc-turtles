@@ -7,7 +7,7 @@ rednet.open("left")
 
 hubID = nil
 while hubID == nil do
-    hubID = rednet.lookup("hub")
+    hubID = rednet.lookup("mobfarm")
 end
 
 rednet.send(hubID, '{"http":"post","endpoint":"addTurtle"}')
