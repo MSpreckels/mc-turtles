@@ -14,6 +14,7 @@ rednet.send(hubID, '{"http":"post","endpoint":"addTurtle"}')
 
 
 function placeGrasBlock()
+  print("placeGrasBlock")
   turtle.select(2)
   turtle.digUp()
   turtle.select(1)
@@ -22,6 +23,7 @@ function placeGrasBlock()
 end
 
 function placeRedstoneLamp()
+  print("placeRedstoneLamp")
   turtle.select(1)
   turtle.digUp()
   turtle.select(2)
