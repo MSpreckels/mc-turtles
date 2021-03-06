@@ -27,12 +27,14 @@ end
 
 function handleFarmOnClicked()
   redstone.setAnalogOutput("back", 0)
-  speaker.playNote("bell", 1, 6);
+  speaker.playNote("bell", 1, 6)
+  updateTurtles()
 end
 
 function handleFarmOffClicked()
   redstone.setAnalogOutput("back", 1)
-  speaker.playNote("bell", 1, 0);
+  speaker.playNote("bell", 1, 0)
+  updateTurtles()
 end
 
 function redraw()
@@ -61,6 +63,11 @@ function draw()
 end
 
 function updateTurtles()
+
+  for _, id in pairs(turtleIDs) do
+    print(id)
+  end
+
   rednet.send(id, '{"isFarmActive":"' .. tostring(isFarmActive) .. '"}')
 end
 
