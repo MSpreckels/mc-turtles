@@ -20,11 +20,15 @@ end
 
 function handleFarmOnClicked()
   redstone.setAnalogOutput("back", 0)
+  speaker.playNote("bell", 1, 6);
+
 
 end
 
 function handleFarmOffClicked()
   redstone.setAnalogOutput("back", 1)
+  speaker.playNote("bell", 1, 0);
+
 end
 
 function redraw()
@@ -72,7 +76,6 @@ while true do
     if xPos >= buttons[i].x and xPos <= buttons[i].x + buttons[i].w - 1 and
       yPos >= buttons[i].y and yPos <= buttons[i].y + buttons[i].h - 1 then
       buttons[i].onClick()
-      speaker.playNote("bell", 1, 6);
     end
   end
 
