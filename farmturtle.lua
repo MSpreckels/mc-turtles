@@ -15,19 +15,25 @@ rednet.send(hubID, '{"http":"post","endpoint":"addTurtle"}')
 
 function placeGrasBlock()
 
-  turtle.select(2)
-  turtle.digUp()
-  turtle.select(1)
-  turtle.placeUp()
-  redstone.setAnalogOutput("top", 0)
+  success, data = turtle.inspectUp()
+  if success and data.name == "minecraft:redstone_lamp" then
+    turtle.select(2)
+    turtle.digUp()
+    turtle.select(1)
+    turtle.placeUp()
+    redstone.setAnalogOutput("top", 0)
+  end  
 end
 
 function placeRedstoneLamp()
-  turtle.select(1)
-  turtle.digUp()
-  turtle.select(2)
-  turtle.placeUp()
-  redstone.setAnalogOutput("top", 15)
+  success, data = turtle.inspectUp()
+  if success and data.name ~= "minecraft:redstone_lamp" then
+    turtle.select(1)
+    turtle.digUp()
+    turtle.select(2)
+    turtle.placeUp()
+    redstone.setAnalogOutput("top", 15)
+  end  
 end
 
 while true do  
