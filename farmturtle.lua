@@ -34,9 +34,7 @@ function placeRedstoneLamp()
   end  
   redstone.setAnalogOutput("top", 15)
 end
-for key, value in pairs(t) do
-  
-end
+
 while true do  
   id, res = rednet.receive(10)
   if res ~= nil then
