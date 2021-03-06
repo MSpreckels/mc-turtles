@@ -10,7 +10,7 @@ function drawbutton(buttonData)
     monitor.write(string.rep(" ", buttonData.w))
   end
 
-  monitor.setCursorPos(buttonData.x, buttonData.y)
+  monitor.setCursorPos(buttonData.x + buttonData.w / 2 - string.len(buttonData.text) / 2, buttonData.y + buttonData.h / 2)
   monitor.setTextColor(colors.white)
   monitor.write(buttonData.text)
 
@@ -54,7 +54,7 @@ button2.text = "Farm Off"
 button2.x = 2
 button2.y = sizeY/2 +1
 button2.w = sizeX-2
-button2.h = sizeY/2-2
+button2.h = sizeY/2-1
 button2.onClick = handleFarmOffClicked
 button2.color = colors.red
 
