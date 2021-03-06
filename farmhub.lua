@@ -3,6 +3,21 @@ local sizeX, sizeY = monitor.getSize()
 local toggle = false
 monitor.clear()
 
+function drawbutton(buttonData, color)
+  for i = 1, buttonData.h, 1 do
+    monitor.setCursorPos(buttonData.x, i)
+    monitor.setBackgroundColor(color)
+    monitor.write(string.rep(" ", buttonData.w))
+  end
+
+  monitor.setCursorPos(buttonData.x + buttonData.w / 2, buttonData.y + buttonData.h / 2)
+  monitor.setTextColor(colors.white)
+  monitor.write(buttonData.text)
+
+  return button;
+end
+
+
 buttons = {}
 
 button = {}
@@ -25,17 +40,3 @@ while true do
 
 end
 
-function drawbutton(buttonData, color)
-  
-  for i = 1, buttonData.h, 1 do
-    monitor.setCursorPos(buttonData.x, i)
-    monitor.setBackgroundColor(color)
-    monitor.write(string.rep(" ", buttonData.w))
-  end
-
-  monitor.setCursorPos(buttonData.x + buttonData.w / 2, buttonData.y + buttonData.h / 2)
-  monitor.setTextColor(colors.white)
-  monitor.write(buttonData.text)
-
-  return button;
-end
