@@ -4,7 +4,7 @@ local toggle = false
 while true do
   event, side, xPos, yPos = os.pullEvent("monitor_touch")
 
-  toggle = ~toggle
+  toggle = not toggle
 
   if toggle then
     monitor.setBackgroundColor(colors.red)
