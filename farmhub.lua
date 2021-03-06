@@ -2,8 +2,7 @@ local monitor = peripheral.find("monitor")
 local speaker = peripheral.find("speaker")
 local sizeX, sizeY = monitor.getSize()
 local toggle = false
-monitor.setBackgroundColor(colors.black)
-monitor.clear()
+
 
 function drawbutton(buttonData, color)
   for i = 0, buttonData.h-1, 1 do
@@ -28,6 +27,16 @@ function handleOnClickTest2()
   redstone.setAnalogOutput("back", 0)
 end
 
+function redraw()
+  monitor.setBackgroundColor(colors.black)
+  monitor.clear()
+
+  for i = 1, #buttons, 1 do
+    drawbutton(buttons[i])
+  end
+
+end
+
 buttons = {}
 
 button = {}
@@ -38,6 +47,7 @@ button.y = 2
 button.w = sizeX-2
 button.h = 1
 button.onClick = handleOnClickTest
+buttons.color = colors.green
 
 button2 = {}
 button2.id = 2
@@ -47,12 +57,12 @@ button2.y = 4
 button2.w = sizeX-2
 button2.h = 1
 button2.onClick = handleOnClickTest2
+buttons.color = colors.red
 
 buttons[button.id] = button
 buttons[button2.id] = button2
 
-drawbutton(buttons[1], colors.green)
-drawbutton(buttons[2], colors.red)
+redraw()
 
 while true do
 
@@ -65,5 +75,8 @@ while true do
       speaker.playNote("bell", 1, 0);
     end
   end
+
+  redraw()
 end
+
 
