@@ -36,11 +36,12 @@ while true do
   if res ~= nil then
     obj = json.decode(res)
     
-    print(obj.isFarmActive)
-    if obj.isFarmActive == true then
+    if obj.isFarmActive == "true" then
       placeGrasBlock()
     else
       placeRedstoneLamp()
     end
+  else
+    print("error error, help")
   end
 end
