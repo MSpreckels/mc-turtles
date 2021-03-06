@@ -34,6 +34,7 @@ while true do
   if res ~= nil then
     obj = json.decode(res)
     
+    print(obj.isFarmActive)
     if obj.isFarmActive then
       placeGrasBlock()
     else
