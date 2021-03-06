@@ -28,12 +28,14 @@ end
 function handleFarmOnClicked()
   redstone.setAnalogOutput("back", 0)
   speaker.playNote("bell", 1, 6)
+  isFarmActive = true
   updateTurtles()
 end
 
 function handleFarmOffClicked()
   redstone.setAnalogOutput("back", 1)
   speaker.playNote("bell", 1, 0)
+  isFarmActive = false
   updateTurtles()
 end
 
