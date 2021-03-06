@@ -40,10 +40,5 @@ while true do
     else
       placeRedstoneLamp()
     end
-  else
-    while hubID == nil do
-      print("searching")
-      hubID = rednet.lookup("mobfarm")
-    end
   end
 end
