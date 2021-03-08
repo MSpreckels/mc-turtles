@@ -3,16 +3,6 @@ local speaker = peripheral.find("speaker")
 monitor.setTextScale(0.5)
 local sizeX, sizeY = monitor.getSize()
 
-local sharedBasePath = "/met/shared"
-local hubBasePath = "/met/pc"
-local jsonPath = sharedBasePath .. "/json"
-local restPath = hubBasePath .. "/rest"
-
-os.loadAPI(jsonPath)
-os.loadAPI(restPath)
-rednet.open("top");
-rednet.host("mobfarm", "sub");
-
 function drawbutton(buttonData)
   for i = 0, buttonData.h-1, 1 do
     monitor.setCursorPos(buttonData.x, buttonData.y + i)
@@ -31,7 +21,6 @@ function handleFarmOnClicked()
 
   if isFarmActive ~= true then
     isFarmActive = true
-    updateTurtles()
   end
 end
 
@@ -41,7 +30,6 @@ function handleFarmOffClicked()
 
   if isFarmActive ~= false then
     isFarmActive = false
-    updateTurtles()
   end
 end
 
@@ -70,19 +58,6 @@ function draw()
   end
 end
 
-function updateTurtles()
-
-  for _, id in pairs(turtleIDs) do
-    rednet.send(id, '{"isFarmActive":"' .. tostring(isFarmActive) .. '"}')
-  end
-
-end
-
-function addTurtle(id)
-  print("turtle wants to register " .. id)
-  table.insert(turtleIDs, id)
-  rednet.send(id, '{"isFarmActive":"' .. tostring(isFarmActive) .. '"}')
-end
 
 buttons = {}
 
@@ -109,14 +84,11 @@ button2.color = colors.red
 buttons[button.id] = button
 buttons[button2.id] = button2
 
+isFanActive=false
+isLightActive=true
+
 redraw()
 
-isFarmActive=false
-
-turtleIDs = {}
-
-rest.register("post", "addTurtle", addTurtle)
-
 while true do
-  parallel.waitForAny(draw, rest.listen)
+  draw()
 end
