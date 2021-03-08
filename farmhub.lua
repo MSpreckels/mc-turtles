@@ -15,7 +15,7 @@ function drawbutton(buttonData)
   monitor.write(buttonData.text)
 end
 
-function handleFarmOnClicked()
+function handleOnFanButtonClicked()
   redstone.setAnalogOutput("back", 1)
   speaker.playNote("bell", 1, 6)
 
@@ -24,7 +24,7 @@ function handleFarmOnClicked()
   end
 end
 
-function handleFarmOffClicked()
+function handleOnLightButtonClicked()
   redstone.setAnalogOutput("back", 0)
   speaker.playNote("bell", 1, 0)
 
@@ -42,47 +42,52 @@ function redraw()
   end
 end
 
-function draw()
-  while true do
-
-    event, side, xPos, yPos = os.pullEvent("monitor_touch")
-
-    for i = 1, #buttons, 1 do
-      if xPos >= buttons[i].x and xPos <= buttons[i].x + buttons[i].w - 1 and
-        yPos >= buttons[i].y and yPos <= buttons[i].y + buttons[i].h - 1 then
-        buttons[i].onClick()
-      end
-    end
-
-    redraw()
-  end
-end
-
-
 buttons = {}
 
-button = {}
-button.id = 1
-button.text = "Farm On"
-button.x = 2
-button.y = 2
-button.w = sizeX-2
-button.h = sizeY/2-2
-button.onClick = handleFarmOnClicked
-button.color = colors.green
+fanButtonOn = {}
+fanButtonOn.id = 1
+fanButtonOn.text = "Fans On"
+fanButtonOn.x = 2
+fanButtonOn.y = 2
+fanButtonOn.w = sizeX-2
+fanButtonOn.h = sizeY/2-2
+fanButtonOn.onClick = handleOnFanButtonClicked
+fanButtonOn.color = colors.green
 
-button2 = {}
-button2.id = 2
-button2.text = "Farm Off"
-button2.x = 2
-button2.y = sizeY/2 +2
-button2.w = sizeX-2
-button2.h = sizeY/2-2
-button2.onClick = handleFarmOffClicked
-button2.color = colors.red
+fanButtonOff = {}
+fanButtonOff.id = 2
+fanButtonOff.text = "Fans Off"
+fanButtonOff.x = 2
+fanButtonOff.y = 2
+fanButtonOff.w = sizeX-2
+fanButtonOff.h = sizeY/2-2
+fanButtonOff.onClick = handleOnFanButtonClicked
+fanButtonOff.color = colors.red
 
-buttons[button.id] = button
-buttons[button2.id] = button2
+lightButtonOn = {}
+lightButtonOn.id = 3
+lightButtonOn.text = "Lights On"
+lightButtonOn.x = 2
+lightButtonOn.y = sizeY/2 +2
+lightButtonOn.w = sizeX-2
+lightButtonOn.h = sizeY/2-2
+lightButtonOn.onClick = handleOnLightButtonClicked
+lightButtonOn.color = colors.green
+
+lightButtonOff = {}
+lightButtonOff.id = 4
+lightButtonOff.text = "Lights Off"
+lightButtonOff.x = 2
+lightButtonOff.y = sizeY/2 +2
+lightButtonOff.w = sizeX-2
+lightButtonOff.h = sizeY/2-2
+lightButtonOff.onClick = handleOnLightButtonClicked
+lightButtonOff.color = colors.red
+
+buttons[fanButtonOn.id] = fanButtonOn
+buttons[fanButtonOff.id] = fanButtonOff
+buttons[lightButtonOn.id] = lightButtonOn
+buttons[lightButtonOff.id] = lightButtonOff
 
 isFanActive=false
 isLightActive=true
@@ -90,5 +95,15 @@ isLightActive=true
 redraw()
 
 while true do
-  draw()
+
+  event, side, xPos, yPos = os.pullEvent("monitor_touch")
+
+  for i = 1, #buttons, 1 do
+    if xPos >= buttons[i].x and xPos <= buttons[i].x + buttons[i].w - 1 and
+      yPos >= buttons[i].y and yPos <= buttons[i].y + buttons[i].h - 1 then
+      buttons[i].onClick()
+    end
+  end
+
+  redraw()
 end
