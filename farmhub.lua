@@ -16,20 +16,26 @@ function drawbutton(buttonData)
 end
 
 function handleOnFanButtonClicked()
-  redstone.setAnalogOutput("back", 1)
   speaker.playNote("bell", 1, 6)
 
-  if isFarmActive ~= true then
-    isFarmActive = true
+  if isFanActive ~= true then
+    isFanActive = true
+    redstone.setAnalogOutput("right", 1)
+  else
+    isFanActive = false
+    redstone.setAnalogOutput("right", 0)
   end
 end
 
 function handleOnLightButtonClicked()
-  redstone.setAnalogOutput("back", 0)
   speaker.playNote("bell", 1, 0)
 
-  if isFarmActive ~= false then
-    isFarmActive = false
+  if isLightActive ~= true then
+    isLightActive = true
+    redstone.setAnalogOutput("left", 1)
+  else
+    isLightActive = false
+    redstone.setAnalogOutput("left", 0)
   end
 end
 
@@ -37,9 +43,8 @@ function redraw()
   monitor.setBackgroundColor(colors.black)
   monitor.clear()
 
-  for i = 1, #buttons, 1 do
-    drawbutton(buttons[i])
-  end
+  drawbutton(isFanActive and 1 or 2)
+  drawbutton(isLightActive and 3 or 4)
 end
 
 buttons = {}
