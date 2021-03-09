@@ -3,6 +3,22 @@ local speaker = peripheral.find("speaker")
 monitor.setTextScale(0.5)
 local sizeX, sizeY = monitor.getSize()
 
+function init()
+  if isFanActive then
+    redstone.setAnalogOutput("right", 1)
+  elseif not isFanActive then
+    redstone.setAnalogOutput("right", 0)
+  end
+
+  if isLightActive then
+    redstone.setAnalogOutput("left", 1)
+  elseif not isLightActive then
+    redstone.setAnalogOutput("left", 0)
+  end
+
+  redraw()
+end
+
 function drawbutton(buttonData)
   for i = 0, buttonData.h-1, 1 do
     monitor.setCursorPos(buttonData.x, buttonData.y + i)
@@ -104,7 +120,7 @@ local isFanActive=false
 local isLightActive=true
 local didOnce=false
 
-redraw()
+init()
 
 while true do
   event, side, xPos, yPos = os.pullEvent("monitor_touch")
