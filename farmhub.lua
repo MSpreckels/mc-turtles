@@ -16,26 +16,32 @@ function drawbutton(buttonData)
 end
 
 function handleOnFanButtonClicked()
-  speaker.playNote("bell", 1, 6)
 
-  if isFanActive ~= true then
-    isFanActive = true
-    redstone.setAnalogOutput("right", 1)
-  else
+  if isFanActive then
     isFanActive = false
     redstone.setAnalogOutput("right", 0)
+    speaker.playNote("bell", 1, 0)
+
+  elseif not isFanActive then
+    isFanActive = true
+    redstone.setAnalogOutput("right", 1)
+    speaker.playNote("bell", 1, 6)
+
   end
 end
 
 function handleOnLightButtonClicked()
-  speaker.playNote("bell", 1, 0)
 
-  if isLightActive ~= true then
-    isLightActive = true
-    redstone.setAnalogOutput("left", 1)
-  else
+  if isLightActive then
     isLightActive = false
     redstone.setAnalogOutput("left", 0)
+    speaker.playNote("bell", 1, 0)
+
+  elseif not isLightActive then
+    isLightActive = true
+    redstone.setAnalogOutput("left", 1)
+    speaker.playNote("bell", 1, 6)
+
   end
 end
 
@@ -43,8 +49,8 @@ function redraw()
   monitor.setBackgroundColor(colors.black)
   monitor.clear()
 
-  drawbutton(isFanActive and 1 or 2)
-  drawbutton(isLightActive and 3 or 4)
+  drawbutton(isFanActive and buttons[2] or buttons[1])
+  drawbutton(isLightActive and buttons[4] or buttons[3])
 end
 
 buttons = {}
@@ -94,19 +100,23 @@ buttons[fanButtonOff.id] = fanButtonOff
 buttons[lightButtonOn.id] = lightButtonOn
 buttons[lightButtonOff.id] = lightButtonOff
 
-isFanActive=false
-isLightActive=true
+local isFanActive=false
+local isLightActive=true
+local didOnce=false
 
 redraw()
 
 while true do
-
   event, side, xPos, yPos = os.pullEvent("monitor_touch")
+  didOnce = false
 
   for i = 1, #buttons, 1 do
     if xPos >= buttons[i].x and xPos <= buttons[i].x + buttons[i].w - 1 and
       yPos >= buttons[i].y and yPos <= buttons[i].y + buttons[i].h - 1 then
-      buttons[i].onClick()
+      if not didOnce then
+        buttons[i].onClick()
+        didOnce = true
+      end
     end
   end
 
