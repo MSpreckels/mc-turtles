@@ -116,8 +116,8 @@ buttons[fanButtonOff.id] = fanButtonOff
 buttons[lightButtonOn.id] = lightButtonOn
 buttons[lightButtonOff.id] = lightButtonOff
 
-local isFanActive=false
-local isLightActive=true
+isFanActive=false
+isLightActive=true
 local didOnce=false
 
 init()
