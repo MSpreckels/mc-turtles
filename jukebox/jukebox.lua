@@ -3,11 +3,11 @@ local monitor = peripheral.find("monitor")
 
 os.loadAPI("met/shared/git")
 
-local arg1 = ...
+-- local arg1 = ...
 
-if not arg1 then
-  print("Add a tempo as an arg please")
-end
+-- if not arg1 then
+--   print("Add a tempo as an arg please")
+-- end
 
 monitor.setTextScale(0.5)
 monitor.clear()
@@ -48,7 +48,7 @@ notes["E"] = 10
 notes["F"] = 11
 
 local bps = 60 --beats per second
-local tempo = arg1 --tempo of song
+local tempo = 100 --tempo of song
 local hits = 0 --total hits
 local bars = 1 --total bars
 local volume = 3
