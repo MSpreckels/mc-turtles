@@ -2,7 +2,7 @@ local giturl = "https://raw.githubusercontent.com/MSpreckels/mc-turtles/master/"
 
 function get(filename, path)
     print("Fetching " .. filename .. "...")
-    local dl = http.get(giturl .. filename .. ".lua")
+    local dl = http.get(giturl .. filename)
     if dl then
         print("Downloading " .. filename .. "...")
         local data = dl.readAll()

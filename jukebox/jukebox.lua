@@ -62,13 +62,17 @@ local song = file.readAll()
 file.close()
 
 for i = 1, #song do
-  local c = song:sub(i,i)
-  print(C)
-  if c ~= "R" then
-    -- local note = notes[c] + (12*octave)
-
-    -- speaker.playNote(instruments[1], volume, note)
+  local range = 0
+  
+  if c == "v" then
+    range = 3 
+  else
+    range = 0
   end
 
+  local c = song:sub(i,i+range)
+  print(c)
+
+  i = i + range
   os.sleep(bps / tempo);
 end
