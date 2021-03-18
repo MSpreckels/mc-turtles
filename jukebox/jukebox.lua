@@ -1,6 +1,8 @@
 local speaker = peripheral.find("speaker")
 local monitor = peripheral.find("monitor")
 
+os.loadAPI("met/shared/git")
+
 local arg1 = ...
 
 if not arg1 then
@@ -54,14 +56,18 @@ local octave = 0
 
 print("tempo of " .. tempo .. " hits every " .. bps / tempo .. " seconds.")
 
-song="CRRFRRFRF"
+git.get("jukebox/songs/feelgoodinc", "songs/feelgoodinc")
+local file = fs.open("songs/feelgoodinc", "r")
+local song = file.readAll()
+file.close()
 
 for i = 1, #song do
   local c = song:sub(i,i)
+  print(C)
   if c ~= "R" then
-    local note = notes[c] + (12*octave)
+    -- local note = notes[c] + (12*octave)
 
-    speaker.playNote(instruments[0], volume, note)
+    -- speaker.playNote(instruments[1], volume, note)
   end
 
   os.sleep(bps / tempo);
