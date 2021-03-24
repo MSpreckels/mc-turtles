@@ -1,0 +1,9 @@
+/summon minecraft:villager ~1 ~ ~ {CustomName:"\"Gustav\"",CustomNameVisible:1,NoAI:1,Offers:{Recipes:[
+  {
+ buy:{id:planks},buyB:{id:emerald},
+ sell:{id:iron_block},maxUses:999999,
+  rewardExp:0}
+]}}
+
+/summon villager ~1 ~ ~ {VillagerData:{profession:Cartographer,level:99,type:plains},CustomName:"\"Gustav\"",Offers:{Recipes:[{buy:{id:gold_nugget,Count:1},sell:{id:paper,Count:1,tag:{display:{Name:"\"Entry Ticket\""}}},rewardExp:0b,maxUses:9999999}]}}
+/effect give @e[type=minecraft:villager,name=Hanzu] minecraft:slowness 100000 7 true
