@@ -53,6 +53,7 @@ local hits = 0 --total hits
 local bars = 1 --total bars
 local volume = 3
 local octave = 0
+local i = 1;
 
 print("tempo of " .. tempo .. " hits every " .. bps / tempo .. " seconds.")
 
@@ -127,7 +128,7 @@ function run(command)
       end
   end
   
-  speaker.playNote("guitar", volume, notes["F#"] + (12*0))
+  speaker.playNote("guitar", volume, notes[action])
   os.sleep((bps/tempo)/duration)
 
 end
